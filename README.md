@@ -1,2 +1,2 @@
 # PWG
-Написание простого REST API CRUD с помощью gin
+Написание простого REST API bookStore с помощью gin, pg

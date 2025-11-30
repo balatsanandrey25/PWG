@@ -1,24 +1,29 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/balatsanandrey25/PWG/pkg/controllers"
+	"github.com/gin-gonic/gin"
+)
 
-type Handler struct{}
+type Handler struct {
+	controllers *controllers.Controllers
+}
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(controllers *controllers.Controllers) *Handler {
+	return &Handler{controllers: controllers}
 }
 
 func (h *Handler) InitHandler() *gin.Engine {
 	router := gin.New()
 	api := router.Group("/api")
 	{
-		movies := api.Group("/movies")
+		books := api.Group("/books")
 		{
-			movies.GET("/", h.getAllMovies)
-			movies.GET("/:id", h.getByID)
-			movies.POST("/", h.createMovie)
-			movies.DELETE("/:id", h.deletMovie)
-			// movies.PATCH("/id", h.updateMovie)
+			books.GET("/", h.controllers.GetAllBooks)
+			books.GET("/:id", h.controllers.GetByIDBook)
+			books.POST("/", h.controllers.CreateBook)
+			books.DELETE("/:id", h.controllers.DeletBook)
+			books.PATCH("/id", h.controllers.UpdateBook)
 		}
 	}
 

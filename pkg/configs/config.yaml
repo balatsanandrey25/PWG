@@ -1,0 +1,19 @@
+server:
+  name: "my-service"
+  port: "8080"
+  environment: "development"
+database:
+  host: "localhost"
+  port: "5433"
+  username: "app_PWG"
+  password: "secret_password123"
+  dbname: "app_db_PWG"
+  sslmode: "disable"
+  max_connections: 20
+
+# // docker run --name postgres -e POSTGRES_USER=app_PWG -e POSTGRES_PASSWORD=secret_password123 -e POSTGRES_DB=app_db_PWG -p 5433:5432 -d postgres -c ssl=off
+# migrate -path ./schema -database "postgres://app_PWG:secret_password123@localhost:5433/app_db_PWG?sslmode=disable" up
+# // user - замените на значение из cfg.Username
+# // password - замените на значение из cfg.Password
+# // dbname - замените на значение из cfg.DBName
+# // Порт 5432 должен соответствовать cfg.Port
