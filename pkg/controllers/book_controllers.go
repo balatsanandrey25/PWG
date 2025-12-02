@@ -3,7 +3,8 @@ package controllers
 import (
 	"errors"
 
-	"github.com/gin-gonic/gin"
+	"github.com/balatsanandrey25/PWG/pkg/models"
+	"github.com/balatsanandrey25/PWG/pkg/schema"
 )
 
 var (
@@ -11,28 +12,29 @@ var (
 	ErrInvalidID    = errors.New("invalid Book ID")
 )
 
-// func NewBool(mod ) *AuthService {
-// 	return &AuthService{repo: repo}
-// }
-
-func (с *Controllers) GetAllBooks(c *gin.Context) {
-
-}
-func (с *Controllers) GetByIDBook(c *gin.Context) {
-
+type BookServe struct {
+	mod models.BookInter
 }
 
-func (с *Controllers) CreateBook(c *gin.Context) {
+func NewBook(mod models.BookInter) *BookServe {
+	return &BookServe{mod: mod}
 }
 
-func (с *Controllers) DeletBook(c *gin.Context) {
-
+func (c *BookServe) GetAllBooks() ([]schema.Book, error) {
+	return c.mod.GetAllBooks()
+}
+func (c *BookServe) GetByIDBook(id int) (*schema.Book, error) {
+	return c.mod.GetByIDBook(id)
 }
 
-func (с *Controllers) UpdateBook(c *gin.Context) {
-
+func (c *BookServe) CreateBook(book *schema.Book) error {
+	return c.mod.CreateBook(book)
 }
 
-// func newErrorResponse(c *gin.Context, statusCode int, message string) {
-// 	c.AbortWithStatusJSON(statusCode, errorResponse{message})
-// }
+func (c *BookServe) DeletBook(id int) error {
+	return c.DeletBook(id)
+}
+
+func (c *BookServe) UpdateBook(book *schema.Book) error {
+	return c.mod.UpdateBook(book)
+}

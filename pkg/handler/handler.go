@@ -19,11 +19,11 @@ func (h *Handler) InitHandler() *gin.Engine {
 	{
 		books := api.Group("/books")
 		{
-			books.GET("/", h.controllers.GetAllBooks)
-			books.GET("/:id", h.controllers.GetByIDBook)
-			books.POST("/", h.controllers.CreateBook)
-			books.DELETE("/:id", h.controllers.DeletBook)
-			books.PATCH("/id", h.controllers.UpdateBook)
+			books.GET("/", h.GetAllBooks)
+			books.GET("/:id", h.GetByIDBook)
+			books.POST("/", h.createBook)
+			books.DELETE("/:id", h.deletBook)
+			books.PATCH("/id", h.updateBook)
 		}
 	}
 
